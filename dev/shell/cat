@@ -1,5 +1,0 @@
-jobs
-cat | tr a-z A-Z &
-jobs
-fg 1
-jobs

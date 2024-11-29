@@ -1,8 +1,0 @@
-ls > file
-curl https://www.nsu.ru >> file
-ps
-cat & ls
-jobs
-ls ; ls | tr a-z A-Z
-jobs
-jobs
