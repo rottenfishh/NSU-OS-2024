@@ -48,40 +48,15 @@ job* parseline(char *line){
         s = blankskip(s);
         if (!*s) break; 
         switch(*s) {
-            /*case '\n':
-                printf("sosz\n");
-                if (pipe_flag == 0) {
-                    curr_idx = ncmds;
-                    curr_job->bg = 0;
-                    printf("bbg 0\n");
-                }
-                pipe_flag = 0;
-                *s++ = '\0';
-                ++ncmds;
-                nargs = 0;
-                curr_job->next = (job*) malloc(sizeof(job));
-                curr_job->next->prev = curr_job;
-                if (rval != 0 && cmds->cmdargs) {
-                    build_job(curr_job, cmds, curr_idx, rval);
-                    printf("built %s bg %d\n", curr_job->job_name, curr_job->bg);
-                }
-                curr_job = curr_job->next;
-                curr_job->next = NULL;
-                printf("nargs %d ncmds %d curr_idx %d rval %d\n", nargs, ncmds, curr_idx, rval);
-                printf("bg %d\n", curr_job->bg);
-                curr_idx = ncmds;
-                break;*/
             case '&': 
                 if (nargs == 0) {
                     fprintf(stderr, "syntax error near unexcepted token &\n");
                     return NULL;
                 }
-                s++;
                 if (*(++s) == '&') {
                     fprintf(stderr, "syntax error near unexcepted token &&\n");
                     return NULL;
                 }
-                
                 s--;
                 if (pipe_flag == 0)
                     curr_idx = ncmds;
@@ -111,7 +86,6 @@ job* parseline(char *line){
                     fprintf(stderr, "syntax error near unexcepted token ;\n");
                     return NULL;
                 }
-                s++;
                 if (*(++s) == ';') {
                     fprintf(stderr, "syntax error near unexcepted token ;;\n");
                     return NULL;

@@ -420,13 +420,10 @@ void remove_job(job* j) { // here
     if (!j)
         return;
     if (j->prev) {
-        printf("dooiii\n");
         j->prev->next = j->next;
     }
     if (bg_jobs == j) {
-            printf("sosss\n");
             if (j->next && j->next->bg == 1) {
-                printf("yeah\n");
                 bg_jobs = j->next;
             } else {
                 bg_jobs = NULL;
@@ -434,4 +431,5 @@ void remove_job(job* j) { // here
         }
     if (j->next)
         j->next->prev = j->prev;
+    printf("soss\n");
 }
