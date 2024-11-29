@@ -87,17 +87,19 @@ void fg(char* arg) {
         }
         idx = atoi(arg);
     } else {
-        idx = biggest_idx;
+        idx = -1;
     }
     pid_t job_pid;
-    while (j) {
+    while (j->next) {
         if (j->idx == idx){
             found = 1;
             break;
         }
         j = j->next;
     }
-    if (!found) {
+    if (j->idx == idx)
+        found = 1;
+    if (!found && idx != -1) {
         fprintf(stderr, "fg:  %d: no such job\n", idx);
         return;
     }
@@ -122,17 +124,19 @@ void bg(char* arg) {
         }
         idx = atoi(arg);
     } else {
-        idx = biggest_idx;
+        idx = -1;
     }
     pid_t job_pid;
-    while (j) {
+    while (j->next) {
         if (j->idx == idx){
             found = 1;
             break;
         }
         j = j->next;
     }
-    if (!found) {
+    if (j->idx == idx)
+        found = 1;
+    if (!found && idx != -1) {
         fprintf(stderr, "bg:  %d: no such job\n", idx);
         return;
     }

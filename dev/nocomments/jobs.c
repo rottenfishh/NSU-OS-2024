@@ -376,8 +376,10 @@ job* find_job(pid_t pid){
 }
 
 void monitor_jobs() {
-    if (!bg_jobs) 
+    if (!bg_jobs) {
+        biggest_idx = 0;
         return;
+    }
     job* j;
     int wstatus;
     pid_t process_pid;
