@@ -51,7 +51,7 @@ int main(int argc, char *argv[]){
     getcwd(cwd, sizeof(cwd));
     sprintf(prompt,"[%s] $ ", cwd);
 
-    while (promptline(prompt, line, sizeof(line)) > 0) { 
+    while (promptline(prompt, line, sizeof(line)) >= 0) { 
         monitor_jobs();
         if (is_interactive && tcsetpgrp(STDIN_FILENO, shell) == -1) {
             perror("error tcsetpgrp shell");

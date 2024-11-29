@@ -16,21 +16,18 @@ int promptline(char *prompt, char *line, int sizline)
     } else {
         desc = stdin;
     }
-    while ((fgets((line), sizline, desc))) {
-        n = strlen(line);
-        *(line + n) = '\0';
-        /*
-         * check to see if command line extends onto
-         * next line. If so, append next line to command line
-         */
-
-        if (*(line + n - 2) == '\\' && *(line + n - 1) == '\n') {
-            *(line + n) = ' ';
-            *(line + n - 1) = ' ';
-            *(line + n - 2) = ' ';
-            continue;   /* read next line */
+    while ((fgets((line + n), sizline - n, desc))) {
+        len = strlen(line + n); 
+        n += len - 1; 
+        if (len > 0 && *(line + n) == '\n') { 
+            *(line + n) = '\0';
         }
-        return n;      /* all done */
+        if (len >= 2 && *(line + n - 1) == '\\') { 
+            *(line + n) = ' '; 
+            *(line + n - 1) = ' ';  
+            continue;      
+        }
+        return n;      
     }
-    return 0;
+    return -1;
 }
