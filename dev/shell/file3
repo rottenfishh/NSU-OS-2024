@@ -1,0 +1,9 @@
+#!/bin/bash
+set -m  # Enable job control
+
+# Start a background job
+sleep 10 &
+echo "Background job started: $!"
+
+# Bring the job to the foreground
+fg %1

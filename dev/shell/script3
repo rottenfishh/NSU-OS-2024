@@ -1,0 +1,7 @@
+#!/bin/bash
+set -m
+sleep 3 &  # test
+sleep 1    # wait some
+sleep 4 &  # run program under test
+jobs
+fg %1

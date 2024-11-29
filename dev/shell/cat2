@@ -1,0 +1,5 @@
+set -m
+cat | tr a-z A-Z &
+jobs
+fg
+jobs

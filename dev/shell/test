@@ -1,0 +1,1 @@
+ls ; ls | tr a-z A-Z
