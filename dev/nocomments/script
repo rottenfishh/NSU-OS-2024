@@ -1,0 +1,4 @@
+ls > file
+curl https://www.nsu.ru >> file
+ps
+ls -l | sort | uniq | wc -l
